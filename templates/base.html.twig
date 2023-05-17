@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Garage V.Pannot{% endblock %}</title>
+    {% block stylesheets %}
         <!-- UIkit CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css" />
-        {% endblock %}
-    </head>
-    <body>
-        <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar-left">
-                <ul class="uk-navbar-nav">
-                    <li><a href="{{ path('home') }}">Accueil</a></li>
-                </ul>
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    {% if app.user %}
-                    <li class="uk-active"><a href="{{ path("app_logout") }}">Déconnexion</a></li>
-                    {% else %}
-                    <li class="uk-parent"><a href="{{ path("app_login") }}">Connexion</a></li>
+    {% endblock %}
+</head>
+<body>
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li><a href="{{ path('home') }}">Accueil</a></li>
+            <li><a href="#">Nos services</a></li>
+            <li><a href="#">Prendre Rendez-vous</a></li>
+            <li><a href="#">Nos véhicules d'occasion</a></li>
+            <li><a href="#">Nous contacter</a></li>
+            <li><a href="#">Les témoignages</a></li>
+        </ul>
+
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+            {% if app.user %}
+                <li class="uk-active"><a href="{{ path("app_logout") }}">Déconnexion</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
                     <li class="uk-parent"><a href="{{ path("app_register") }}">Inscription</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-        <!-- UIkit JS -->
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-        {% endblock %}
-    </body>
+                {% endif %}
+            {% else %}
+                <li class="uk-parent"><a href="{{ path("app_login") }}">Connexion</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
+{% endblock %}
+</body>
 </html>

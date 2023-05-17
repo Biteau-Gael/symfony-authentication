@@ -23,17 +23,27 @@
                     {% for role in user.roles %}
                         {{ role | replace({
                             "ROLE_": "",
-                            "USER": "Utilisateur",
-                            "ADMIN" : "Administrateur"
+                            "USER": "Employé",
+                            "ADMIN" : "Gérant"
                             }) }}
                     <br> 
                     {% endfor %}
                     </td>
                     <td>{{ user.registerdate | date("d-m-Y") }}</td>
+                    <td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('user_delete', {id: user.id}) }}" class="uk-button uk-button-danger"
+                           onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">Supprimer</a> <!-- Bouton de suppression -->
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+            <!-- Bouton d'inscription -->
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_register') }}" class="uk-button uk-button-primary uk-margin-top">Inscrire un nouveau employé</a>
+        {% endif %}
         {% else %}
             <h2>Vous devez être connecté pour voir la liste des utilisateurs.</h2>
         {% endif %}
