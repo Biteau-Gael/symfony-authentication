@@ -64,6 +64,6 @@ class SecurityController extends AbstractController
             $this->addFlash('error', 'L\'utilisateur n\'a pas été trouvé.');
         }
 
-        return new RedirectResponse($this->router->generate('home')); // Vous pouvez rediriger vers la route de votre choix après la suppression.
+        return new RedirectResponse($this->router->generate('liste_salarié')); // Vous pouvez rediriger vers la route de votre choix après la suppression.
     }
 }
