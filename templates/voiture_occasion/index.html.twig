@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service de réparation{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="text-center mt-4">
+            <img src="{{ asset('img/Logo VL RVB.jpg')}}" alt="Logo Garage" class="mb-4">
+            <h1>Véhicules d'occasion</h1>
+        </div>
+
+        <form id="filter-form">
+            <input type="number" id="min-Prix" name="minPrix" placeholder="Prix min">
+            <input type="number" id="max-Prix" name="maxPrix" placeholder="Prix max">
+            <input type="number" id="min-Kilometre" name="minKilometre" placeholder="Km min">
+            <input type="number" id="max-Kilometre" name="maxKilometre" placeholder="Km max">
+            <input type="number" id="min-Annee" name="minAnnee" placeholder="Année min">
+            <input type="number" id="max-Annee" name="maxAnnee" placeholder="Année max">
+            <button type="submit">Filtrer</button>
+        </form>
+
+        <div class="row mt-5" id="car-list">
+            {% for voiture in VoitureOccasion %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ asset('img/' ~ voiture.getimage()) }}" class="card-img-top" alt="Image de la voiture">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ voiture.getMarque() }} {{ voiture.getModele() }}</h2>
+                            <p class="card-text">Prix : {{ voiture.getPrix() }}€</p>
+                            <p class="card-text">Kilometre : {{ voiture.getKilometre() }} km</p>
+                            <a href="{{ path('voiture_detail', {'id': voiture.getId()}) }}" class="btn btn-primary">Détails</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('filter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var url = '/voitures/occasion/filtre?' + new URLSearchParams(new FormData(this)).toString();
+
+            fetch(url)
+                .then(function(response) { return response.json(); })
+                .then(function(voitures) {
+                    var carList = document.getElementById('car-list');
+                    carList.innerHTML = ''; // Clear the list
+                    voitures.forEach(function(voiture) {
+                        var carDiv = document.createElement('div');
+                        carDiv.innerHTML = `
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="{{ asset('img/') }}${voiture.image}" class="card-img-top" alt="Image de la voiture">
+                                <div class="card-body">
+                                    <h2 class="card-title">${voiture.marque} ${voiture.modele}</h2>
+                                    <h2 class="card-title"> ${voiture.Kilometre}</h2>
+                                    <h2 class="card-title"> ${voiture.prix}</h2>
+
+                                    <a href="/vehicule/occasion/${voiture.id}" class="btn btn-primary">Détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                        carList.appendChild(carDiv);
+                    });
+
+                });
+        });
+    </script>
+
+{% endblock %}
