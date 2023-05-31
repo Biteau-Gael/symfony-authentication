@@ -15,6 +15,10 @@
                         <p class="card-text">Année : {{ voiture.getAnnee() }}</p>
                         <p class="card-text">Prix : {{ voiture.getPrix() }}€</p>
                         <p class="card-text">Kilometre : {{ voiture.getKilometre() }} km</p>
+                        <a href="{{ path('app_contact', {'modele': voiture.modele}) }}" class="btn btn-primary">Demandez plus d'informations sur ce véhicule</a>
+
+
+
                         <a href="{{ path('vehicule_occasion') }}" class="btn btn-primary">Retour à la liste des voitures</a>
                     </div>
                 </div>

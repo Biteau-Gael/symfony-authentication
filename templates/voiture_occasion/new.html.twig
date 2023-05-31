@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle voiture{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mb-4">Ajouter une nouvelle voiture</h1>
+
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': ''}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.marque, 'Marque', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.marque, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.marque) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.modele, 'Modèle', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.modele, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.modele) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.annee, 'Année', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.annee, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.annee) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.prix, 'Prix', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.prix) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.Kilometre, 'Kilomètre', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.Kilometre, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Kilometre) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.images, 'images', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.images, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.images) }}
+        </div>
+
+
+
+        <button class="btn btn-primary">Enregistrer</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
