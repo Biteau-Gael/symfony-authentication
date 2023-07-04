@@ -22,50 +22,59 @@
             {% for voiture in VoitureOccasion %}
                 <div class="col-md-4">
                     <div class="card">
-                        <div id="carousel-{{ voiture.id }}" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleIndicators-{{ voiture.getId() }}" class="carousel slide" data-bs-ride="carousel">
+                            <ol class="carousel-indicators">
+                                {% for image in voiture.images %}
+                                    <li data-bs-target="#carouselExampleIndicators-{{ voiture.getId() }}" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %}></li>
+                                {% endfor %}
+                            </ol>
                             <div class="carousel-inner">
                                 {% for image in voiture.images %}
                                     <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                        <img src="{{ asset('public/img/' ~ image.chemin) }}" class="card-img-top" alt="Image de la voiture">
+                                        <img src="{{ asset('assets/img/' ~ image.getChemin) }}" class="d-block w-100" alt="...">
                                     </div>
                                 {% endfor %}
                             </div>
-                            <a class="carousel-control-prev" href="#carousel-{{ voiture.id }}" role="button" data-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-{{ voiture.getId() }}" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel-{{ voiture.id }}" role="button" data-slide="next">
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-{{ voiture.getId() }}" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                         <div class="card-body">
                             <h2 class="card-title">{{ voiture.getMarque() }} {{ voiture.getModele() }}</h2>
                             <p class="card-text">Prix : {{ voiture.getPrix() }}€</p>
-                            <p class="card-text">Kilometre : {{ voiture.getKilometre() }} km</p>
+                            <p class="card-text">Kilomètre : {{ voiture.getKilometre() }} km</p>
                             <a href="{{ path('voiture_detail', {'id': voiture.getId()}) }}" class="btn btn-primary">Détails</a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
 
+
+
+
         </div>
     </div>
 
-    <script>
-        document.getElementById('filter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+    {% block javascripts %}
+        <script>
+            document.getElementById('filter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            var url = '/voitures/occasion/filtre?' + new URLSearchParams(new FormData(this)).toString();
+                var url = '/voitures/occasion/filtre?' + new URLSearchParams(new FormData(this)).toString();
 
-            fetch(url)
-                .then(function(response) { return response.json(); })
-                .then(function(voitures) {
-                    var carList = document.getElementById('car-list');
-                    carList.innerHTML = ''; // Clear the list
-                    voitures.forEach(function(voiture) {
-                        var carDiv = document.createElement('div');
-                        carDiv.innerHTML = `
+                fetch(url)
+                    .then(function(response) { return response.json(); })
+                    .then(function(voitures) {
+                        var carList = document.getElementById('car-list');
+                        carList.innerHTML = ''; // Clear the list
+                        voitures.forEach(function(voiture) {
+                            var carDiv = document.createElement('div');
+                            carDiv.innerHTML = `
                         <div class="col-md-4">
                             <div class="card">
                                 <img src="{{ asset('img/') }}${voiture.image}" class="card-img-top" alt="Image de la voiture">
@@ -79,11 +88,12 @@
                             </div>
                         </div>
                     `;
-                        carList.appendChild(carDiv);
-                    });
+                            carList.appendChild(carDiv);
+                        });
 
-                });
-        });
-    </script>
+                    });
+            });
+        </script>
+    {% endblock %}
 
 {% endblock %}

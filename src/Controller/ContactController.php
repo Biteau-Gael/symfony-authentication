@@ -12,8 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-<<<<<<< HEAD
-
     /**
      * @Route("/contact", name="app_cgeneral")
      */
@@ -26,10 +24,10 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Traitez les données du formulaire (par exemple, enregistrez-les en base de données)
-
             $rendezvous = $form->getData();
             $entityManager->persist($rendezvous);
             $entityManager->flush();
+
             // Redirigez l'utilisateur vers une page de confirmation
             return $this->redirectToRoute('app_confirmation');
         }
@@ -39,13 +37,9 @@ class ContactController extends AbstractController
         ]);
     }
 
-=======
->>>>>>> origin/nouvelleConfig
     /**
      * @Route("/contact/{modele}", name="app_contact", defaults={"modele": null})
      */
-
-<<<<<<< HEAD
     public function contact(?string $modele, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (is_null($modele)) {
@@ -53,10 +47,6 @@ class ContactController extends AbstractController
             throw $this->createNotFoundException('Modèle de voiture non spécifié.');
         }
 
-=======
-    public function contact($modele, Request $request, EntityManagerInterface $entityManager): Response
-    {
->>>>>>> origin/nouvelleConfig
         $rendezVous = new RendezVous();
         $rendezVous->setModele($modele);
 
@@ -65,10 +55,10 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Traitez les données du formulaire (par exemple, enregistrez-les en base de données)
-
             $rendezvous = $form->getData();
             $entityManager->persist($rendezvous);
             $entityManager->flush();
+
             // Redirigez l'utilisateur vers une page de confirmation
             return $this->redirectToRoute('app_confirmation');
         }

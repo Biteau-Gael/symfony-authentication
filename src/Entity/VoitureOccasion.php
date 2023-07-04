@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* @ORM\Entity(repositoryClass=VoitureOccasionRepository::class)
-*/
+ * @ORM\Entity(repositoryClass="App\Repository\VoitureOccasionRepository")
+ */
 class VoitureOccasion
 {
 /**

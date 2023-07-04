@@ -120,7 +120,7 @@ class VoitureOccasionController extends AbstractController
                 'annee' => $voiture->getAnnee(),
                 'prix' => $voiture->getPrix(),
                 'Kilometre' => $voiture->getKilometre(),
-                'image' => $voiture->getImage()
+                'image' => $voiture->getImages()
             ];
         }
 
