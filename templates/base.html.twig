@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Garage V.Pannot{% endblock %}</title>
-    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+
+    <!-- Feuilles de styles-->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css')}}">
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
+    <!-- Fichiers JS -->
+
+    <script src="{{ asset('assets/js/bootstrap.bundle.js') }}" defer></script>
+    {% block javascripts %}{% endblock %}
+    <script src="{{ asset('assets/js/scripts.js') }}" defer></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,13 +28,13 @@
                     <a class="nav-link" href="#">Nos services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('app_garage')}}">L'atelier</a>
+                    <a class="nav-link" href="#">Prendre Rendez-vous</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('vehicule_occasion')}}">Nos véhicules d'occasion</a>
+                    <a class="nav-link" href="#">Nos véhicules d'occasion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_contact')}}">Nous contacter</a>
+                    <a class="nav-link" href="#">Nous contacter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Les témoignages</a>
@@ -50,7 +60,10 @@
     </div>
 </nav>
 
-{% block body %}{% endblock %}
-{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+{% block body %}
+{% endblock %}
+
+
+
 </body>
 </html>

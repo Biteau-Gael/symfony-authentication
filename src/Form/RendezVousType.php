@@ -16,7 +16,10 @@ class RendezVousType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('modele', TextType::class)
+            ->add('modele', TextType::class, [
+            'required' => false
+        ])
+
             ->add('nom', TextType::class)
             ->add('email', TextType::class)
             ->add('telephone', TextType::class)

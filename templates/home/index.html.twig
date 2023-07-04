@@ -41,6 +41,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <a href="{{ path('voiture_new') }}" class="btn btn-success mt-2">Enregistrer une nouvelle voiture</a>
             <!-- Bouton d'inscription -->
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_register') }}" class="btn btn-primary mt-2">Inscrire un nouveau employé</a>
@@ -49,4 +50,6 @@
             <h2>Vous devez être connecté pour voir la liste des utilisateurs.</h2>
         {% endif %}
     </section>
+
+
 {% endblock %}

@@ -2,126 +2,151 @@
 
 namespace App\Entity;
 
-use AllowDynamicProperties;
-use App\Repository\VoitureOccasionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=VoitureOccasionRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\VoitureOccasionRepository")
  */
-#[AllowDynamicProperties] class VoitureOccasion
+class VoitureOccasion
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+/**
+* @ORM\Id
+* @ORM\GeneratedValue
+* @ORM\Column(type="integer")
+*/
+private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $marque;
+/**
+* @ORM\Column(type="string", length=255)
+*/
+private $marque;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $modele;
+/**
+* @ORM\Column(type="string", length=255)
+*/
+private $modele;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $annee;
+/**
+* @ORM\Column(type="integer")
+*/
+private $annee;
 
-    /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
-     */
-    private $prix;
+/**
+* @ORM\Column(type="decimal", precision=10, scale=0)
+*/
+private $prix;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
+/**
+* @ORM\Column(type="integer")
+*/
+private $Kilometre;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Kilometre;
+/**
+* @ORM\OneToMany(targetEntity=Image::class, mappedBy="voitureOccasion", cascade={"persist", "remove"})
+*/
+private $images;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+public function __construct()
+{
+$this->images = new ArrayCollection();
+}
 
-    public function getMarque(): ?string
-    {
-        return $this->marque;
-    }
+public function getId(): ?int
+{
+return $this->id;
+}
 
-    public function setMarque(string $marque): self
-    {
-        $this->marque = $marque;
+public function getMarque(): ?string
+{
+return $this->marque;
+}
 
-        return $this;
-    }
+public function setMarque(string $marque): self
+{
+$this->marque = $marque;
 
-    public function getModele(): ?string
-    {
-        return $this->modele;
-    }
+return $this;
+}
 
-    public function setModele(string $modele): self
-    {
-        $this->modele = $modele;
+public function getModele(): ?string
+{
+return $this->modele;
+}
 
-        return $this;
-    }
+public function setModele(string $modele): self
+{
+$this->modele = $modele;
 
-    public function getAnnee(): ?int
-    {
-        return $this->annee;
-    }
+return $this;
+}
 
-    public function setAnnee(int $annee): self
-    {
-        $this->annee = $annee;
+public function getAnnee(): ?int
+{
+return $this->annee;
+}
 
-        return $this;
-    }
+public function setAnnee(int $annee): self
+{
+$this->annee = $annee;
 
-    public function getPrix(): ?string
-    {
-        return $this->prix;
-    }
+return $this;
+}
 
-    public function setPrix(string $prix): self
-    {
-        $this->prix = $prix;
+public function getPrix(): ?string
+{
+return $this->prix;
+}
 
-        return $this;
-    }
+public function setPrix(string $prix): self
+{
+$this->prix = $prix;
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
+return $this;
+}
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
+public function getKilometre(): ?int
+{
+return $this->Kilometre;
+}
 
-        return $this;
-    }
+public function setKilometre(int $Kilometre): self
+{
+$this->Kilometre = $Kilometre;
 
-    public function getKilometre(): ?int
-    {
-        return $this->Kilometre;
-    }
+return $this;
+}
 
-    public function setKilometre(int $Kilometre): self
-    {
-        $this->Kilometre = $Kilometre;
+/**
+* @return Collection|Image[]
+*/
+public function getImages(): Collection
+{
+return $this->images;
+}
 
-        return $this;
-    }
+public function addImage(Image $image): self
+{
+if (!$this->images->contains($image)) {
+$this->images[] = $image;
+$image->setVoitureOccasion($this);
+}
+
+return $this;
+}
+
+public function removeImage(Image $image): self
+{
+if ($this->images->removeElement($image)) {
+// set the owning side to null (unless already changed)
+if ($image->getVoitureOccasion() === $this) {
+$image->setVoitureOccasion(null);
+}
+}
+
+return $this;
+}
+
+// ...
 }

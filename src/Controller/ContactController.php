@@ -13,11 +13,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     /**
+     * @Route("/contact", name="app_cgeneral")
+     */
+    public function contactGeneral(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $rendezVous = new RendezVous();
+
+        $form = $this->createForm(RendezVousType::class, $rendezVous);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Traitez les données du formulaire (par exemple, enregistrez-les en base de données)
+            $rendezvous = $form->getData();
+            $entityManager->persist($rendezvous);
+            $entityManager->flush();
+
+            // Redirigez l'utilisateur vers une page de confirmation
+            return $this->redirectToRoute('app_confirmation');
+        }
+
+        return $this->render('contact/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/contact/{modele}", name="app_contact", defaults={"modele": null})
      */
-
-    public function contact($modele, Request $request, EntityManagerInterface $entityManager): Response
+    public function contact(?string $modele, Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (is_null($modele)) {
+            // Gérer l'erreur ici, par exemple rediriger vers une autre page ou afficher un message d'erreur.
+            throw $this->createNotFoundException('Modèle de voiture non spécifié.');
+        }
+
         $rendezVous = new RendezVous();
         $rendezVous->setModele($modele);
 
@@ -26,10 +55,10 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Traitez les données du formulaire (par exemple, enregistrez-les en base de données)
-
             $rendezvous = $form->getData();
             $entityManager->persist($rendezvous);
             $entityManager->flush();
+
             // Redirigez l'utilisateur vers une page de confirmation
             return $this->redirectToRoute('app_confirmation');
         }
