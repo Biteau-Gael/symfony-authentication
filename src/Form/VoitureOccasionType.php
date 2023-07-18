@@ -21,6 +21,8 @@ class VoitureOccasionType extends AbstractType
             ->add('annee')
             ->add('prix')
             ->add('Kilometre')
+            ->add('Equipements')
+            ->add('Caracteristiques')
 
             ->add('images', FileType::class, [
                 'label' => false,

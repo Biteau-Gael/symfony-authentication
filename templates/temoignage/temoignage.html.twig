@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laisser un témoignage{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Laisser un témoignage</h2>
+
+        <form action="{{ path('laisser_temoignage') }}" method="POST">
+            <div class="form-group">
+                {{ form_label(form.nom, 'Nom') }}
+                {{ form_widget(form.nom, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.commentaire, 'Commentaire') }}
+                {{ form_widget(form.commentaire, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group mb-4">
+                {{ form_label(form.note, 'Note') }}
+                {{ form_widget(form.note, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+            {{ form_rest(form) }}
+        </form>
+    </div>
+{% endblock %}

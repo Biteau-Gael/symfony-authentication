@@ -39,6 +39,18 @@
         </div>
 
         <div class="mb-3">
+            {{ form_label(form.Equipements, 'Equipements', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.Equipements, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Equipements) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.Caracteristiques, 'Caracteristiques', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.Caracteristiques, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Caracteristiques) }}
+        </div>
+
+        <div class="mb-3">
             {{ form_label(form.images, 'images', {'label_attr': {'class': 'form-label'}}) }}
             {{ form_widget(form.images, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.images) }}

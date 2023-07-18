@@ -13,7 +13,7 @@
             <div class="carousel-inner">
                 {% for image in voiture.images %}
                     <div class="carousel-item {% if loop.first %}active{% endif %}">
-                        <img src="{{ asset('assets/img/' ~ image.getChemin) }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('assets/img/' ~ image.getChemin) }}" class="d-block w-100 carousel-image" alt="...">
                     </div>
                 {% endfor %}
             </div>
@@ -32,6 +32,8 @@
                 <p class="card-text">Année : {{ voiture.getAnnee() }}</p>
                 <p class="card-text">Prix : {{ voiture.getPrix() }}€</p>
                 <p class="card-text">Kilométrage : {{ voiture.getKilometre() }} km</p>
+                <p class="card-text">Caractéristiques : {{ voiture.getCaracteristiques }}</p>
+                <p class="card-text">Equipements : {{ voiture.getEquipements }}</p>
                 <a href="{{ path('app_contact', {'modele': voiture.getModele()}) }}" class="btn btn-primary">Demandez plus d'informations sur ce véhicule</a>
                 <a href="{{ path('vehicule_occasion') }}" class="btn btn-primary">Retour à la liste des voitures</a>
             </div>
