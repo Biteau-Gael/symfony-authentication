@@ -26,4 +26,14 @@ PROCÉDURE D'INSTALLATION
 
 7) lancez le serveur web:
 
-"symfony server:start
+"symfony server:start"
+
+UTILISATION DU PROFIL ADMINISTRATEUR :
+
+Un compte par défaut avec le role "ADMIN" sera inscrit automatiquement en base de donnée lorsque que vous créerez l'application. 
+
+Voici les identifiants : 
+- mail => t@t.com
+- mdp => jaimelespatesausucre
+
+Pour changer le mot de passe, il vous suffit d'accéder à la base de donnée MySql et de se diriger sur la table "user" pour ainsi modifier le mot de passe. Etant donné que le site crypte automatiquement tout les mot de passe, il vous faudra au préalable se rendre sur le site "https://busilearn.fr/outils/cryptage-mot-de-passe#:~:text=Le%20cryptage%20de%20mot%20de%20passe%20en%20Standard%20DES%2C%20MD5%20et%20sha1&text=DES%20est%20un%20algorithme%20de,4%20octets%20pour%20la%20cl%C3%A9.". Vous aurez juste à inscrire le mot de passe souhaité et de sélectionner le résultat correspondant à la ligne "Standard DES".
