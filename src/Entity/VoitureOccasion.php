@@ -48,6 +48,16 @@ private $Kilometre;
 */
 private $images;
 
+/**
+ * @ORM\Column(type="text", nullable=true)
+ */
+private $Caracteristiques;
+
+/**
+ * @ORM\Column(type="text", nullable=true)
+ */
+private $Equipements;
+
 public function __construct()
 {
 $this->images = new ArrayCollection();
@@ -149,4 +159,28 @@ return $this;
 }
 
 // ...
+
+public function getCaracteristiques(): ?string
+{
+    return $this->Caracteristiques;
+}
+
+public function setCaracteristiques(?string $Caracteristiques): self
+{
+    $this->Caracteristiques = $Caracteristiques;
+
+    return $this;
+}
+
+public function getEquipements(): ?string
+{
+    return $this->Equipements;
+}
+
+public function setEquipements(?string $Equipements): self
+{
+    $this->Equipements = $Equipements;
+
+    return $this;
+}
 }
