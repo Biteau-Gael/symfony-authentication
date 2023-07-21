@@ -26,11 +26,11 @@ class RegistrationFormType extends AbstractType
             ->add('pseudo', TextType::class, [
                 'attr' => ['class' => 'uk-input']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('Confirmation', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Merci de confirmer la demande',
                     ]),
                 ]
             ])

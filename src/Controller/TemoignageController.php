@@ -16,7 +16,7 @@ class TemoignageController extends AbstractController
     /**
      * @Route("/laisser-un-temoignage", name="laisser_temoignage")
      */
-    public function laisserTemoignage(Request $request, EntityManagerInterface $entityManager, FlashBagInterface $flashBag): Response
+    public function laisserTemoignage(Request $request, EntityManagerInterface $entityManager): Response
     {
         $temoignage = new Temoignage();
         $form = $this->createForm(TemoignageType::class, $temoignage);
@@ -28,7 +28,6 @@ class TemoignageController extends AbstractController
             $entityManager->persist($temoignage);
             $entityManager->flush();
 
-            $flashBag->add('success', 'Votre témoignage a été soumis avec succès !');
 
             // Redirigez vers la page d'accueil ou une autre page appropriée
             return $this->redirectToRoute('app_accueil');

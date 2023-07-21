@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-3">
-            {{ form_label(form.date, 'Date') }}
+            {{ form_label(form.date, 'Date de rendez-vous souhaité') }}
             {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.date) }}
         </div>
@@ -36,6 +36,12 @@
             {{ form_label(form.message, 'Message') }}
             {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.message) }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form_label(form.modele, 'Modèle') }}
+            {{ form_widget(form.modele, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.modele) }}
         </div>
 
 
