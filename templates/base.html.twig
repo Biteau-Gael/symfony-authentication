@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Garage V.Parot{% endblock %}</title>
+
+    <!-- Feuilles de styles-->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css')}}">
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
+    <!-- Fichiers JS -->
+
+    <script src="{{ asset('assets/js/bootstrap.bundle.js') }}" defer></script>
+    {% block javascripts %}{% endblock %}
+    <script src="{{ asset('assets/js/scripts.js') }}" defer></script>
+</head>
+<body>
+
+{% include 'base/nav.html.twig' %}
+{% block body %}
+{% endblock %}
+{% include'base/footer.html.twig' %}
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez nous !{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Formulaire de contact</h1>
+
+        {{ form_start(form, {'attr': {'class': 'mb-3'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.nom, 'Nom') }}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.nom) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.email, 'Email') }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.telephone, 'Téléphone') }}
+            {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.telephone) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.date, 'Date') }}
+            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.date) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.message, 'Message') }}
+            {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.message) }}
+        </div>
+
+
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
